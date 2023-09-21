@@ -1,8 +1,9 @@
+import CondicionAtmosferica from "./Components/weather_api/CondicionAtmosferica";
 function App() {
   return (
   <div>
-    <p className="  bg-green-600">
-      hola mundo
+    <p>
+      <CondicionAtmosferica/>
     </p>
   </div>
   );

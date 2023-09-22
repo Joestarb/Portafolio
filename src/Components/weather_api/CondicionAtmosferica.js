@@ -130,9 +130,6 @@ function CondicionAtmosferica() {
                         <div className="grid grid-cols-3 gap-4">
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
-
-                                // Assuming that all cities with the same name have the same weather condition,
-                                // we'll just take the first item in the array to get the weather condition.
                                 const primeraCiudad = ciudadesConNombre[0];
 
                                 return (

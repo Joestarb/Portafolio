@@ -46,9 +46,9 @@ function CondicionAtmosferica() {
     }, [estadoActual]);
 
     return (
-        <div className="h-screen grid place-content-center bg-blue-400">
+        <div className="h-screen grid place-content-center">
             <div className="  bg-blue-300 p-10 rounded-xl">
-
+                
                 <h1 className="text-3xl font-semibold mb-4">Estado del Tiempo</h1>
                 <div className="flex items-center mb-4">
                     <label className="mr-2">Selecciona un estado:</label>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import pmNublado from "../../assets/weatherApi/Parcialmente_nublado.png";
+import aguaceros from "../../assets/weatherApi/aguaceros.png";
 import tdispersas from "../../assets/weatherApi/lluvia.png";
 import { default as mmNublado, default as mmnSoleado } from "../../assets/weatherApi/mayormenteSoleado.png";
+import niebla from "../../assets/weatherApi/niebla.png";
 import nublado from "../../assets/weatherApi/nublado.png";
 import Soleado from "../../assets/weatherApi/soleado.png";
 import tormentas from "../../assets/weatherApi/tormenta.png";
@@ -14,7 +16,9 @@ function CondicionAtmosferica() {
         "Soleado": Soleado,
         "Tormentas": tormentas,
         "Tormentas dispersas": tdispersas,
-        "Tormentas aisladas":tdispersas,
+        "Tormentas aisladas": tdispersas,
+        "Aguaceros": aguaceros,
+        "Niebla": niebla,
     };
 
     const url = "https://api.datos.gob.mx/v1/condiciones-atmosfericas";
@@ -135,16 +139,20 @@ function CondicionAtmosferica() {
                                     <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage shadow-xl p-2">
                                         <p className="font-bold text-center">{nombreCiudad}</p>
                                         <ul>
-                                            <li className="text-white font-semibold" key={primeraCiudad.cityid}>
-                                                <p>Temperatura: {primeraCiudad.tempc}°C</p>
-                                                <p>Clima: {primeraCiudad.skydescriptionlong}</p>
+                                            <li className="text-white font-semibold " key={primeraCiudad.cityid}>
+                                                <p className=" text-center">Temperatura: <br />    {primeraCiudad.tempc}°C </p>
+                                                <p className=" text-center  text-black">Clima:  {primeraCiudad.skydescriptionlong} </p>
                                                 {weatherIcons[primeraCiudad.skydescriptionlong] && (
-                                                    <img
-                                                        src={weatherIcons[primeraCiudad.skydescriptionlong]}
-                                                        alt={primeraCiudad.skydescriptionlong}
-                                                        width="40"
-                                                        height="40"
-                                                    />
+                                                    <div className="flex justify-center">
+                                                        <img
+
+                                                            src={weatherIcons[primeraCiudad.skydescriptionlong]}
+                                                            alt={primeraCiudad.skydescriptionlong}
+                                                            width="40"
+                                                            height="40"
+                                                        />
+                                                    </div>
+
                                                 )}
                                             </li>
                                         </ul>

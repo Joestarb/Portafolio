@@ -8,11 +8,11 @@ function CondicionAtmosferica() {
         { id: 4, name: "Campeche" },
         { id: 5, name: "Chiapas" },
         { id: 6, name: "Chihuahua" },
-        { id: 7, name: "Ciudad de México" },
+        { id: 7, name: "Ciudad de Mexico" },
         { id: 8, name: "Coahuila" },
         { id: 9, name: "Colima" },
         { id: 10, name: "Durango" },
-        { id: 11, name: "Estado de México" },
+        { id: 11, name: "Estado de Mexico" },
         { id: 12, name: "Guanajuato" },
         { id: 13, name: "Guerrero" },
         { id: 14, name: "Hidalgo" },
@@ -20,7 +20,7 @@ function CondicionAtmosferica() {
         { id: 16, name: "Michoacán" },
         { id: 17, name: "Morelos" },
         { id: 18, name: "Nayarit" },
-        { id: 19, name: "Nuevo León" },
+        { id: 19, name: "Nuevo Leon" },
         { id: 20, name: "Oaxaca" },
         { id: 21, name: "Puebla" },
         { id: 22, name: "Querétaro" },
@@ -32,7 +32,7 @@ function CondicionAtmosferica() {
         { id: 28, name: "Tamaulipas" },
         { id: 29, name: "Tlaxcala" },
         { id: 30, name: "Veracruz" },
-        { id: 31, name: "Yucatán" },
+        { id: 31, name: "Yucatan" },
         { id: 32, name: "Zacatecas" }
     ];
 
@@ -55,7 +55,7 @@ function CondicionAtmosferica() {
             })
             .then((condicionAtm) => {
                 setDatos(condicionAtm.results);
-                setClimaEstadoActual(condicionAtm.results[0]); 
+                setClimaEstadoActual(condicionAtm.results[0]);
                 setLoading(false);
             })
             .catch((error) => {
@@ -103,16 +103,16 @@ function CondicionAtmosferica() {
                 {error && <p className="text-red-500">{error}</p>}
                 {datos && !loading && !error && (
                     <div className="mb-4">
-                        <h2 className="text-xl font-semibold">Ciudades en {estadoActual}:</h2>
+                        <h2 className="text-xl    font-semibold">Ciudades en {estadoActual}:</h2>
                         <div className="grid grid-cols-3 gap-4"> 
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
                                 return (
-                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bg-blue-400 shadow-xl  p-2"> {/* Aplicar estilo a cada caja */}
+                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage shadow-xl  p-2"> {/* Aplicar estilo a cada caja */}
                                         <p>Nombre: {nombreCiudad}</p>
                                         <ul>
                                             {ciudadesConNombre.map((ciudad) => (
-                                                <li key={ciudad.cityid}>
+                                                <li className="text-white font-semibold" key={ciudad.cityid}>
                                                     <p>Temperatura: {ciudad.tempc}°C</p>
                                                     <p>Clima: {ciudad.skydescriptionlong}</p>
                                                 </li>

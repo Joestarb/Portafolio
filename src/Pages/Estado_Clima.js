@@ -4,7 +4,7 @@ import CondicionAtmosferica from "../Components/weather_api/CondicionAtmosferica
 function Estado_Clima() {
   return (
     <>
-    <div >
+    <div className=' overflow-auto'>
     <CondicionAtmosferica/>
     </div>
     </>

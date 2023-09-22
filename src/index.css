@@ -10,3 +10,9 @@
     background-size: cover;
     object-fit: cover;
 }
+.skyImage{
+    background-image: url(./assets//weatherApi/sky.png);
+    background-repeat: repeat;
+    background-size: cover;
+    object-fit: fill;
+}

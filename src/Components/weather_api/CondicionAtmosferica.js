@@ -1,5 +1,22 @@
 import React, { useEffect, useState } from "react";
+import pmNublado from "../../assets/weatherApi/Parcialmente_nublado.png";
+import tdispersas from "../../assets/weatherApi/lluvia.png";
+import { default as mmNublado, default as mmnSoleado } from "../../assets/weatherApi/mayormenteSoleado.png";
+import nublado from "../../assets/weatherApi/nublado.png";
+import Soleado from "../../assets/weatherApi/soleado.png";
+import tormentas from "../../assets/weatherApi/tormenta.png";
 function CondicionAtmosferica() {
+    const weatherIcons = {
+        "Parcialmente nublado": pmNublado,
+        "Mayormente soleado": mmnSoleado,
+        "Mayormente nublado": mmNublado,
+        "Nublado": nublado,
+        "Soleado": Soleado,
+        "Tormentas": tormentas,
+        "Tormentas dispersas": tdispersas,
+        "Tormentas aisladas":tdispersas,
+    };
+
     const url = "https://api.datos.gob.mx/v1/condiciones-atmosfericas";
     const estadosMx = [
         { id: 1, name: "Aguascalientes" },
@@ -23,7 +40,7 @@ function CondicionAtmosferica() {
         { id: 19, name: "Nuevo Leon" },
         { id: 20, name: "Oaxaca" },
         { id: 21, name: "Puebla" },
-        { id: 22, name: "Querétaro" },
+        { id: 22, name: "Queretaro" },
         { id: 23, name: "Quintana Roo" },
         { id: 24, name: "San Luis Potosí" },
         { id: 25, name: "Sinaloa" },
@@ -69,9 +86,11 @@ function CondicionAtmosferica() {
         consultarDatos();
     }, [estadoActual]);
 
+
+
     return (
-        <div className="h-screen    ">
-           
+        <div className="h-screen skyImage    ">
+
             <div className="  p-10 rounded-xl  ">
 
                 <h1 className="text-3xl text-center font-semibold mb-4">Estado del Tiempo</h1>
@@ -103,20 +122,31 @@ function CondicionAtmosferica() {
                 {error && <p className="text-red-500">{error}</p>}
                 {datos && !loading && !error && (
                     <div className="mb-4">
-                        <h2 className="text-xl    font-semibold">Ciudades en {estadoActual}:</h2>
-                        <div className="grid grid-cols-3 gap-4"> 
+                        <h2 className="text-xl font-semibold">Ciudades en {estadoActual}:</h2>
+                        <div className="grid grid-cols-3 gap-4">
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
+
+                                // Assuming that all cities with the same name have the same weather condition,
+                                // we'll just take the first item in the array to get the weather condition.
+                                const primeraCiudad = ciudadesConNombre[0];
+
                                 return (
-                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage shadow-xl  p-2"> {/* Aplicar estilo a cada caja */}
-                                        <p>Nombre: {nombreCiudad}</p>
+                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage shadow-xl p-2">
+                                        <p className="font-bold text-center">{nombreCiudad}</p>
                                         <ul>
-                                            {ciudadesConNombre.map((ciudad) => (
-                                                <li className="text-white font-semibold" key={ciudad.cityid}>
-                                                    <p>Temperatura: {ciudad.tempc}°C</p>
-                                                    <p>Clima: {ciudad.skydescriptionlong}</p>
-                                                </li>
-                                            ))[0]} 
+                                            <li className="text-white font-semibold" key={primeraCiudad.cityid}>
+                                                <p>Temperatura: {primeraCiudad.tempc}°C</p>
+                                                <p>Clima: {primeraCiudad.skydescriptionlong}</p>
+                                                {weatherIcons[primeraCiudad.skydescriptionlong] && (
+                                                    <img
+                                                        src={weatherIcons[primeraCiudad.skydescriptionlong]}
+                                                        alt={primeraCiudad.skydescriptionlong}
+                                                        width="40"
+                                                        height="40"
+                                                    />
+                                                )}
+                                            </li>
                                         </ul>
                                     </div>
                                 );

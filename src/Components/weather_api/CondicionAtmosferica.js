@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 function CondicionAtmosferica() {
     const url = "https://api.datos.gob.mx/v1/condiciones-atmosfericas";
     const estadosMx = [
@@ -49,15 +48,14 @@ function CondicionAtmosferica() {
 
         fetch(`${url}?state=${estadoActual}`)
             .then((res) => {
-                if (!res.ok) {
+                if (!res) {
                     throw new Error("La respuesta de la red no fue válida");
                 }
                 return res.json();
             })
             .then((condicionAtm) => {
                 setDatos(condicionAtm.results);
-                // Aquí establecemos el estado climaEstadoActual con la información del clima
-                setClimaEstadoActual(condicionAtm.results[0]); // Suponiendo que solo necesitas el primer resultado
+                setClimaEstadoActual(condicionAtm.results[0]); 
                 setLoading(false);
             })
             .catch((error) => {
@@ -72,14 +70,15 @@ function CondicionAtmosferica() {
     }, [estadoActual]);
 
     return (
-        <div className="h-screen bg-blue-300 ">
-            <div className="  bg-blue-300 p-10 rounded-xl">
+        <div className="h-screen    ">
+           
+            <div className="  p-10 rounded-xl  ">
 
                 <h1 className="text-3xl text-center font-semibold mb-4">Estado del Tiempo</h1>
-                <div className="flex items-center mb-4">
-                    <label className="mr-2">Selecciona un estado:</label>
+                <div className="grid place-content-center mb-4">
+                    <label className="mr-2 text-center font-bold">Selecciona un estado:</label>
                     <select
-                        className="border rounded-md p-1"
+                        className="border px-28 rounded-md p-1"
                         onChange={(e) => setEstadoActual(e.target.value)}
                         value={estadoActual}
                     >
@@ -105,7 +104,7 @@ function CondicionAtmosferica() {
                 {datos && !loading && !error && (
                     <div className="mb-4">
                         <h2 className="text-xl font-semibold">Ciudades en {estadoActual}:</h2>
-                        <div className="grid grid-cols-3 gap-4"> {/* Ajusta el número de columnas según tus necesidades */}
+                        <div className="grid grid-cols-3 gap-4"> 
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
                                 return (
@@ -117,7 +116,7 @@ function CondicionAtmosferica() {
                                                     <p>Temperatura: {ciudad.tempc}°C</p>
                                                     <p>Clima: {ciudad.skydescriptionlong}</p>
                                                 </li>
-                                            ))[0]} {/* Tomamos solo el primer elemento */}
+                                            ))[0]} 
                                         </ul>
                                     </div>
                                 );
@@ -125,12 +124,6 @@ function CondicionAtmosferica() {
                         </div>
                     </div>
                 )}
-
-
-
-                <div className="grid grid-cols-1 gap-4">
-                    {/* Aquí puedes mostrar otros datos si es necesario */}
-                </div>
             </div>
         </div>
 

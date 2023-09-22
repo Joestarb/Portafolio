@@ -3,3 +3,9 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.bgImage{
+    background-image: url(./assets//weatherApi/bg.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+}

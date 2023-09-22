@@ -49,7 +49,7 @@ function CondicionAtmosferica() {
         <div className="h-screen bg-black ">
             <div className="  bg-blue-300 p-10 rounded-xl">
 
-                <h1 className="text-3xl font-semibold mb-4">Estado del Tiempo</h1>
+                <h1 className="text-3xl text-center font-semibold mb-4">Estado del Tiempo</h1>
                 <div className="flex items-center mb-4">
                     <label className="mr-2">Selecciona un estado:</label>
                     <select
@@ -76,15 +76,14 @@ function CondicionAtmosferica() {
                 {loading && <p>Cargando...</p>}
 
                 {error && <p className="text-red-500">{error}</p>}
-
                 {datos && !loading && !error && (
                     <div className="mb-4">
-                        <h2 className="text-xl grid grid-cols-9 font-semibold">Ciudades en {estadoActual}:</h2>
-                        <ul>
+                        <h2 className="text-xl font-semibold">Ciudades en {estadoActual}:</h2>
+                        <div className="grid grid-cols-3 gap-4"> {/* Ajusta el número de columnas según tus necesidades */}
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
                                 return (
-                                    <li key={nombreCiudad}>
+                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bg-blue-400 shadow-xl  p-2"> {/* Aplicar estilo a cada caja */}
                                         <p>Nombre: {nombreCiudad}</p>
                                         <ul>
                                             {ciudadesConNombre.map((ciudad) => (
@@ -94,12 +93,13 @@ function CondicionAtmosferica() {
                                                 </li>
                                             ))[0]} {/* Tomamos solo el primer elemento */}
                                         </ul>
-                                    </li>
+                                    </div>
                                 );
                             })}
-                        </ul>
+                        </div>
                     </div>
                 )}
+
 
 
                 <div className="grid grid-cols-1 gap-4">

@@ -5,7 +5,7 @@ function CondicionAtmosferica() {
     const url = "https://api.datos.gob.mx/v1/condiciones-atmosfericas";
     const estadosMx = [
         { id: 1, name: "Aguascalientes" },
-        
+
         { id: 4, name: "Campeche" },
         { id: 5, name: "Chiapas" },
         { id: 32, name: "Zacatecas" }
@@ -46,9 +46,9 @@ function CondicionAtmosferica() {
     }, [estadoActual]);
 
     return (
-        <div className="h-screen grid place-content-center">
+        <div className="h-screen bg-black ">
             <div className="  bg-blue-300 p-10 rounded-xl">
-                
+
                 <h1 className="text-3xl font-semibold mb-4">Estado del Tiempo</h1>
                 <div className="flex items-center mb-4">
                     <label className="mr-2">Selecciona un estado:</label>
@@ -77,15 +77,30 @@ function CondicionAtmosferica() {
 
                 {error && <p className="text-red-500">{error}</p>}
 
-                {climaEstadoActual && !loading && !error && (
+                {datos && !loading && !error && (
                     <div className="mb-4">
-                        <h2 className="text-xl font-semibold">Clima actual:</h2>
-                        <p>Nombre: {climaEstadoActual.name}</p>
-                        <p>Temperatura: {climaEstadoActual.tempc}°C</p>
-                        <p>Clima: {climaEstadoActual.skydescriptionlong}</p>
-                        {/* Agrega más información del clima según tus necesidades */}
+                        <h2 className="text-xl grid grid-cols-9 font-semibold">Ciudades en {estadoActual}:</h2>
+                        <ul>
+                            {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
+                                const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
+                                return (
+                                    <li key={nombreCiudad}>
+                                        <p>Nombre: {nombreCiudad}</p>
+                                        <ul>
+                                            {ciudadesConNombre.map((ciudad) => (
+                                                <li key={ciudad.cityid}>
+                                                    <p>Temperatura: {ciudad.tempc}°C</p>
+                                                    <p>Clima: {ciudad.skydescriptionlong}</p>
+                                                </li>
+                                            ))[0]} {/* Tomamos solo el primer elemento */}
+                                        </ul>
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </div>
                 )}
+
 
                 <div className="grid grid-cols-1 gap-4">
                     {/* Aquí puedes mostrar otros datos si es necesario */}

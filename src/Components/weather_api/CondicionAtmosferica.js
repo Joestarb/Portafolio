@@ -132,7 +132,6 @@ function CondicionAtmosferica() {
                         <div className="grid grid-cols-3 gap-4">
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
-
                                 const primeraCiudad = ciudadesConNombre[0];
 
                                 return (

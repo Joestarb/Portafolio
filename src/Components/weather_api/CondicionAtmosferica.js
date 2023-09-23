@@ -19,6 +19,7 @@ function CondicionAtmosferica() {
         "Tormentas aisladas": tdispersas,
         "Aguaceros": aguaceros,
         "Niebla": niebla,
+        "Algunos aguaceros":aguaceros,
     };
 
     const url = "https://api.datos.gob.mx/v1/condiciones-atmosfericas";
@@ -46,7 +47,7 @@ function CondicionAtmosferica() {
         { id: 21, name: "Puebla" },
         { id: 22, name: "Queretaro" },
         { id: 23, name: "Quintana Roo" },
-        { id: 24, name: "San Luis Potosí" },
+        { id: 24, name: "San Luis Potosi" },
         { id: 25, name: "Sinaloa" },
         { id: 26, name: "Sonora" },
         { id: 27, name: "Tabasco" },
@@ -57,6 +58,7 @@ function CondicionAtmosferica() {
         { id: 32, name: "Zacatecas" }
     ];
 
+    
     const [datos, setDatos] = useState([]);
     const [estadoActual, setEstadoActual] = useState("Quintana Roo");
     const [climaEstadoActual, setClimaEstadoActual] = useState(null);
@@ -131,12 +133,10 @@ function CondicionAtmosferica() {
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
 
-                                // Assuming that all cities with the same name have the same weather condition,
-                                // we'll just take the first item in the array to get the weather condition.
                                 const primeraCiudad = ciudadesConNombre[0];
 
                                 return (
-                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage shadow-xl p-2">
+                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage  shadow-2xl p-2">
                                         <p className="font-bold text-center">{nombreCiudad}</p>
                                         <ul>
                                             <li className="text-white font-semibold " key={primeraCiudad.cityid}>

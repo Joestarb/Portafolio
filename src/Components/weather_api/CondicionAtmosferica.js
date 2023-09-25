@@ -101,17 +101,18 @@ function CondicionAtmosferica() {
                 <div className="grid place-content-center mb-4">
                     <label className="mr-2 text-center font-bold">Selecciona un estado:</label>
                     <select
-                        className="border px-28 rounded-md p-1"
-                        onChange={(e) => setEstadoActual(e.target.value)}
-                        value={estadoActual}
-                    >
-                        <option value="">Selecciona una opción</option>
-                        {estadosMx.map((opcion) => (
-                            <option key={opcion.id} value={opcion.name}>
-                                {opcion.name}
-                            </option>
-                        ))}
-                    </select>
+    className="border rounded-md p-1 text-lg text-left" // Añade las clases text-lg y text-left
+    onChange={(e) => setEstadoActual(e.target.value)}
+    value={estadoActual}
+>
+    <option value="">Selecciona una opción</option>
+    {estadosMx.map((opcion) => (
+        <option key={opcion.id} value={opcion.name}>
+            {opcion.name}
+        </option>
+    ))}
+</select>
+
                 </div>
                 {estadoActual && (
                     <div className="mb-4">

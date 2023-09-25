@@ -95,10 +95,8 @@ function CondicionAtmosferica() {
 
 
     return (
-        <div className="h-screen skyImage    ">
-
-            <div className="  p-10 rounded-xl  ">
-
+        <div className="h-screen skyImage">
+            <div className="p-10 rounded-xl">
                 <h1 className="text-3xl text-center font-semibold mb-4">Estado del Tiempo</h1>
                 <div className="grid place-content-center mb-4">
                     <label className="mr-2 text-center font-bold">Selecciona un estado:</label>
@@ -126,7 +124,12 @@ function CondicionAtmosferica() {
                 {loading && <p>Cargando...</p>}
 
                 {error && <p className="text-red-500">{error}</p>}
-                {datos && !loading && !error && (
+
+                {datos.length === 0 && !loading && !error && (
+                    <p className=" text-center font-bold text-4xl">No se encuentra información.</p>
+                )}
+
+                {datos.length > 0 && !loading && !error && (
                     <div className="mb-4">
                         <h2 className="text-xl font-semibold">Ciudades en {estadoActual}:</h2>
                         <div className="grid grid-cols-3 gap-4">
@@ -135,23 +138,21 @@ function CondicionAtmosferica() {
                                 const primeraCiudad = ciudadesConNombre[0];
 
                                 return (
-                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage  shadow-2xl p-2">
+                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage shadow-2xl p-2">
                                         <p className="font-bold text-center">{nombreCiudad}</p>
                                         <ul>
                                             <li className="text-white font-semibold " key={primeraCiudad.cityid}>
-                                                <p className=" text-center">Temperatura: <br />    {primeraCiudad.tempc}°C </p>
-                                                <p className=" text-center  text-black">Clima:  {primeraCiudad.skydescriptionlong} </p>
+                                                <p className="text-center">Temperatura: <br /> {primeraCiudad.tempc}°C </p>
+                                                <p className="text-center text-black">Clima: {primeraCiudad.skydescriptionlong} </p>
                                                 {weatherIcons[primeraCiudad.skydescriptionlong] && (
                                                     <div className="flex justify-center">
                                                         <img
-
                                                             src={weatherIcons[primeraCiudad.skydescriptionlong]}
                                                             alt={primeraCiudad.skydescriptionlong}
                                                             width="40"
                                                             height="40"
                                                         />
                                                     </div>
-
                                                 )}
                                             </li>
                                         </ul>
@@ -163,8 +164,8 @@ function CondicionAtmosferica() {
                 )}
             </div>
         </div>
-
     );
 }
+
 
 export default CondicionAtmosferica;

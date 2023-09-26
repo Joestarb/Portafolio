@@ -16,7 +16,6 @@ const CardApi = ({ titulo, descripcion, imagen, enlace }) => {
                     <p className="text-white">{descripcion}</p>
                 </div>
             </Link>
-
         </div>
     );
 };

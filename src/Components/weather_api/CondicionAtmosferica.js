@@ -83,7 +83,7 @@ function CondicionAtmosferica() {
                 setLoading(false);
             })
             .catch((error) => {
-                setError("Error al obtener datos. Por favor, inténtalo de nuevo más tarde." );
+                setError("Error al obtener datos. Por favor, inténtalo de nuevo más tarde.");
                 setLoading(false);
                 console.error("Error al obtener datos:", error);
             });
@@ -123,7 +123,7 @@ function CondicionAtmosferica() {
                     </div>
                 )}
 
-                {loading && <div className="flex justify-center"><img src={cargando}/></div>}
+                {loading && <div className="flex justify-center"><img src={cargando} /></div>}
 
                 {error && <p className="text-red-500">{error}</p>}
 
@@ -134,13 +134,14 @@ function CondicionAtmosferica() {
                 {datos.length > 0 && !loading && !error && (
                     <div className="mb-4">
                         <h2 className="text-xl font-semibold">Ciudades en {estadoActual}:</h2>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-3 gap-4 ">
                             {Array.from(new Set(datos.map((ciudad) => ciudad.name))).map((nombreCiudad) => {
                                 const ciudadesConNombre = datos.filter((ciudad) => ciudad.name === nombreCiudad);
                                 const primeraCiudad = ciudadesConNombre[0];
 
                                 return (
-                                    <div key={nombreCiudad} className="border border-teal-400 rounded-xl bgImage shadow-2xl p-2">
+                                    <div key={nombreCiudad} className="border-4  hover:scale-110 transition-transform duration-500   border-white rounded-xl bgImage shadow-2xl p-2">
+
                                         <p className="font-bold text-center">{nombreCiudad}</p>
                                         <ul>
                                             <li className="text-white font-semibold " key={primeraCiudad.cityid}>

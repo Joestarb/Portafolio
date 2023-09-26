@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as WiIcons from "react-icons/wi";
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
     return (

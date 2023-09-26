@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import pmNublado from "../../assets/weatherApi/Parcialmente_nublado.png";
 import aguaceros from "../../assets/weatherApi/aguaceros.png";
+import cargando from "../../assets/weatherApi/cargando.gif";
 import tdispersas from "../../assets/weatherApi/lluvia.png";
 import { default as mmNublado, default as mmnSoleado } from "../../assets/weatherApi/mayormenteSoleado.png";
 import niebla from "../../assets/weatherApi/niebla.png";
@@ -19,7 +20,7 @@ function CondicionAtmosferica() {
         "Tormentas aisladas": tdispersas,
         "Aguaceros": aguaceros,
         "Niebla": niebla,
-        "Algunos aguaceros":aguaceros,
+        "Algunos aguaceros": aguaceros,
     };
 
     const url = "https://api.datos.gob.mx/v1/condiciones-atmosfericas";
@@ -58,7 +59,7 @@ function CondicionAtmosferica() {
         { id: 32, name: "Zacatecas" }
     ];
 
-    
+
     const [datos, setDatos] = useState([]);
     const [estadoActual, setEstadoActual] = useState("Quintana Roo");
     const [climaEstadoActual, setClimaEstadoActual] = useState(null);
@@ -82,7 +83,7 @@ function CondicionAtmosferica() {
                 setLoading(false);
             })
             .catch((error) => {
-                setError("Error al obtener datos. Por favor, inténtalo de nuevo más tarde.");
+                setError("Error al obtener datos. Por favor, inténtalo de nuevo más tarde." );
                 setLoading(false);
                 console.error("Error al obtener datos:", error);
             });
@@ -97,32 +98,32 @@ function CondicionAtmosferica() {
     return (
         <div className="h-screen skyImage">
             <div className="p-10 rounded-xl">
-                <h1 className="text-3xl text-center font-semibold mb-4">Estado del Tiempo</h1>
-                <div className="grid place-content-center mb-4">
-                    <label className="mr-2 text-center font-bold">Selecciona un estado:</label>
+                <h1 className="text-8xl text-center font-semibold mb-4">Estado del Tiempo</h1>
+                <div className="grid place-content-center mb-4 mt-12" >
+                    <label className="mr-2 text-center text-4xl font-bold">Selecciona un estado:</label>
                     <select
-    className="border rounded-md p-1 text-lg text-left" // Añade las clases text-lg y text-left
-    onChange={(e) => setEstadoActual(e.target.value)}
-    value={estadoActual}
->
-    <option value="">Selecciona una opción</option>
-    {estadosMx.map((opcion) => (
-        <option key={opcion.id} value={opcion.name}>
-            {opcion.name}
-        </option>
-    ))}
-</select>
+                        className="border   rounded-2xl   px-3 text-3xl text-left" // Añade las clases text-lg y text-left
+                        onChange={(e) => setEstadoActual(e.target.value)}
+                        value={estadoActual}
+                    >
+                        <option value="">Selecciona una opción</option>
+                        {estadosMx.map((opcion) => (
+                            <option key={opcion.id} value={opcion.name}>
+                                {opcion.name}
+                            </option>
+                        ))}
+                    </select>
 
                 </div>
                 {estadoActual && (
                     <div className="mb-4">
-                        <h2 className="text-xl font-semibold">
+                        <h2 className=" text-4xl font-semibold">
                             Estado seleccionado: {estadoActual}
                         </h2>
                     </div>
                 )}
 
-                {loading && <p>Cargando...</p>}
+                {loading && <div className="flex justify-center"><img src={cargando}/></div>}
 
                 {error && <p className="text-red-500">{error}</p>}
 

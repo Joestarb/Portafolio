@@ -8,15 +8,15 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <div className="flex">
-      <Sidebar/>
-      <div className="flex-1">
-      <Routes>
-          <Route path="/" element={<Dashboard/>} />
-          <Route path="/Estado_clima" element={<Estado_Clima/>} />
-        </Routes>
-      </div>
-      </div>
+        <div>
+          {/* <Sidebar/> */}
+          {/* <div className="flex-1"> */}
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/Estado_clima" element={<Estado_Clima />} />
+            </Routes>
+          {/* </div> */}
+        </div>
       </BrowserRouter>
     </>
   );
